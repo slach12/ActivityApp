@@ -7,61 +7,61 @@ using System.Threading.Tasks;
 
 namespace ActivityApp
 {
-    public class ItemService
+    public class ActivityService
     {
-        public List<Item> Items;
+        public List<Activity> Activities;
 
-        public ItemService() 
+        public ActivityService() 
         {
-            Items = new List<Item>();
+            Activities = new List<Activity>();
 
             InitializeTestingData();
         }
 
         private void InitializeTestingData()
         {
-            var Item = new Item();
+            var Item = new Activity();
             Item.Id = 1;
             Item.Name = "Bieganie 5 km + 10 km";
-            Item.TypeId = ItemTypes.Running;
+            Item.TypeId = ActivityTypes.Running;
             Item.ActivityDate = DateTime.Now;
             Item.Quantity = 15;
             Item.ActivtyTime = 120;
             Item.Weight = 84;
-            Items.Add(Item);
+            Activities.Add(Item);
 
 
-            Item = new Item();
+            Item = new Activity();
             Item.Id = 11;
             Item.Name = "Bieganie 5 km + 10 km";
-            Item.TypeId = ItemTypes.Running;
+            Item.TypeId = ActivityTypes.Running;
             Item.ActivityDate = DateTime.Now;
             Item.Quantity = 15;
             Item.ActivtyTime = 120;
             Item.Weight = 84;
-            Items.Add(Item);
+            Activities.Add(Item);
 
 
 
-            Item = new Item();
+            Item = new Activity();
             Item.Id = 2;
             Item.Name = "Grzbiet";
-            Item.TypeId = ItemTypes.Swimming;
+            Item.TypeId = ActivityTypes.Swimming;
             Item.ActivityDate = DateTime.Now;
             Item.Quantity = 60;
             Item.ActivtyTime = 67;
             Item.Weight = 84;
-            Items.Add(Item);
+            Activities.Add(Item);
 
-            Item = new Item();
+            Item = new Activity();
             Item.Id = 22;
             Item.Name = "Grzbiet";
-            Item.TypeId = ItemTypes.Swimming;
+            Item.TypeId = ActivityTypes.Swimming;
             Item.ActivityDate = DateTime.Now;
             Item.Quantity = 40;
             Item.ActivtyTime = 50;
             Item.Weight = 84;
-            Items.Add(Item);
+            Activities.Add(Item);
 
            /* Item = new Item();
             Item.Id = 3;
@@ -85,7 +85,7 @@ namespace ActivityApp
 
         }
 
-        public ConsoleKeyInfo AddNewItemView(MenuActionService actionService)
+        public ConsoleKeyInfo AddNewActivityView(MenuActionService actionService)
         {
             var addNewItemMenu = actionService.GetMenuActionsByMenuName("AddNewItemMenu");
             Console.WriteLine();
@@ -100,12 +100,12 @@ namespace ActivityApp
             return operation;
         }
 
-        public int AddNewItem(char itemType)
+        public int AddActivityItem(char activityType)
         {
             int itemTypeId;
-            Int32.TryParse(itemType.ToString(), out itemTypeId);    
-            Item item = new Item();
-            item.TypeId = (ItemTypes)itemTypeId;
+            Int32.TryParse(activityType.ToString(), out itemTypeId);    
+            Activity item = new Activity();
+            item.TypeId = (ActivityTypes)itemTypeId;
             Console.WriteLine();
             Console.WriteLine("Podaj id dla nowej aktywności:");
             var id = Console.ReadLine();
@@ -117,13 +117,13 @@ namespace ActivityApp
 
             switch (item.TypeId)
             {
-                case ItemTypes.Swimming:
+                case ActivityTypes.Swimming:
                     Console.WriteLine("Podaj ilość przepłyniętych basenów dwudziesto-pięcio metrowych:");
                     break;
-                case ItemTypes.Running: 
+                case ActivityTypes.Running: 
                     Console.WriteLine("Podaj pokonany dystans w kilometach:");
                     break;
-                case ItemTypes.Exercising: 
+                case ActivityTypes.Exercising: 
                     Console.WriteLine("Podaj ilość wykonanych powtórzeń:");
                     break;
 
@@ -153,13 +153,13 @@ namespace ActivityApp
 
 
             
-            Items.Add(item);
+            Activities.Add(item);
             return itemId;
 
 
         }
 
-        public int RemoveItemView()
+        public int RemoveActivityView()
         {
             Console.WriteLine("Wprowadź id aktywności, którą chcesz usunąć:");
             var itemId = Console.ReadKey();
@@ -170,10 +170,10 @@ namespace ActivityApp
             return id;
         }
 
-        public void RemoveItem(int removeId)
+        public void RemoveActivity(int removeId)
         {
-            Item activityToRemove = new Item();
-            foreach (var item in Items)
+            Activity activityToRemove = new Activity();
+            foreach (var item in Activities)
             {
                 if (item.Id == removeId)
                 {
@@ -181,10 +181,10 @@ namespace ActivityApp
                     break;
                 }
             }
-            Items.Remove(activityToRemove);
+            Activities.Remove(activityToRemove);
         }
 
-        public int ItemDetailSelectionView()
+        public int ActivityDetailSelectionView()
         {
             Console.WriteLine("Wprowadź id aktywności, którą chcesz pokazać:");
             var itemId = Console.ReadKey();
@@ -195,10 +195,10 @@ namespace ActivityApp
             return id;
         }
 
-        public void ItemDetailView(int detailId)
+        public void ActivityDetailView(int detailId)
         {
-            Item activityToShow = new Item();
-            foreach(var item in Items)
+            Activity activityToShow = new Activity();
+            foreach(var item in Activities)
             {
                 if(item.Id == detailId)
                 {
@@ -218,7 +218,7 @@ namespace ActivityApp
             Console.WriteLine();
         }
 
-        public ItemTypes ItemTypeSelectionView()
+        public ActivityTypes ActivityTypeSelectionView()
         {
             Console.WriteLine("Podaj id typu aktywności , które chcesz wyświetlić:");
             Console.WriteLine("1 - Pływanie");
@@ -229,22 +229,23 @@ namespace ActivityApp
             int id;
             Int32.TryParse(itemId.KeyChar.ToString(), out id);
 
-            ItemTypes idType = (ItemTypes)id;
+            ActivityTypes idType = (ActivityTypes)id;
 
             return idType;
         }
 
-        public void ItemByTypeIdView(ItemTypes typeId)
+        public void ActivityByTypeIdView(ActivityTypes typeId)
         {
-            List<Item> toShow = new List<Item>();
+            List<Activity> toShow = new List<Activity>();
             int maxNameLength = 0;
-            foreach (var item in Items)
+            int maxIdLength = 0;
+            foreach (var item in Activities)
             {
-                if (item.TypeId == typeId || typeId == ItemTypes.All)
+                if (item.TypeId == typeId || typeId == ActivityTypes.All)
                 {
                     toShow.Add(item);
                     maxNameLength = Math.Max(maxNameLength, item.Name.Length); 
-                
+                    maxIdLength = Math.Max(maxIdLength,item.Id.ToString().Length);  
                 }
             }
             

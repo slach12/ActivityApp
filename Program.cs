@@ -49,7 +49,7 @@
             Console.WriteLine("Witam w  Activty App!");
             MenuActionService actionService = new MenuActionService();
             actionService = Initialize(actionService);
-            ItemService itemService = new ItemService();
+            ActivityService itemService = new ActivityService();
             while (true)
             {
 
@@ -65,20 +65,20 @@
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        var keyInfo = itemService.AddNewItemView(actionService);
-                        var id = itemService.AddNewItem(keyInfo.KeyChar);
+                        var keyInfo = itemService.AddNewActivityView(actionService);
+                        var id = itemService.AddActivityItem(keyInfo.KeyChar);
                         break;
                     case '2':
-                        var removeId = itemService.RemoveItemView();
-                        itemService.RemoveItem(removeId);
+                        var removeId = itemService.RemoveActivityView();
+                        itemService.RemoveActivity(removeId);
                         break;
                     case '3':
-                        var detailId = itemService.ItemDetailSelectionView();
-                        itemService.ItemDetailView(detailId);
+                        var detailId = itemService.ActivityDetailSelectionView();
+                        itemService.ActivityDetailView(detailId);
                         break;
                     case '4':
-                        var typeId = itemService.ItemTypeSelectionView();
-                        itemService.ItemByTypeIdView(typeId);
+                        var typeId = itemService.ActivityTypeSelectionView();
+                        itemService.ActivityByTypeIdView(typeId);
                         break;
 
                     default:

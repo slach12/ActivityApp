@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ActivityApp
 {
-    public class Item
+    public class Activity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ItemTypes TypeId {  get; set; }
+        public ActivityTypes TypeId {  get; set; }
 
         public DateTime ActivityDate { get; set; }
 
@@ -24,11 +24,11 @@ namespace ActivityApp
                 
                 switch (TypeId)
                 {
-                    case ItemTypes.Swimming:
+                    case ActivityTypes.Swimming:
                         return "długości basenu( 25 m)";
-                    case ItemTypes.Running:
+                    case ActivityTypes.Running:
                         return "km";
-                    case ItemTypes.Exercising:
+                    case ActivityTypes.Exercising:
                         return "powtórzenia";
                     default:
                         return "";
