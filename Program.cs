@@ -6,7 +6,6 @@
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
             /*
                 Program tworzy zestawienie aktywności fizycznych, każda aktywność ma typ : pływanie , bieganie , ćwiczenie.
                 Klasa aktywność ma własności:

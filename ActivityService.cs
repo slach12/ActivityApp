@@ -248,24 +248,18 @@ namespace ActivityApp
                     maxIdLength = Math.Max(maxIdLength,item.Id.ToString().Length);  
                 }
             }
-            
-            
-            //toDo
-            //Zrobić metodę wyświetlającą
-            string line = "-";
-            for(int i =0; i<maxNameLength*2; i++)
-            {
-                line = line + "-";  
-            }
+
+            var lineLength = maxIdLength + maxNameLength + 15;
+
             Console.WriteLine();
             if(toShow.Count > 0)
             {
-                Console.WriteLine(line);
+                Console.WriteLine(("").PadRight(lineLength, '-'));
                 foreach (var item in toShow)
                 {
                     Console.WriteLine($"Id : {item.Id} | Name : {item.Name}");
                 }
-                Console.WriteLine(line);
+                Console.WriteLine(("").PadRight(lineLength, '-'));
                 Console.WriteLine();
             }
             else
