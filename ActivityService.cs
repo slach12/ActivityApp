@@ -15,10 +15,10 @@ namespace ActivityApp
         {
             Activities = new List<Activity>();
 
-            InitializeTestingData();
+            
         }
 
-        private void InitializeTestingData()
+        public void InitializeTestingData()
         {
             var Item = new Activity();
             Item.Id = 1;

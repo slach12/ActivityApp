@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace ActivityApp
 {
-    public class Helpers
-    {
-    }
-
     public enum ActivityTypes
     {
         Swimming = 1,
