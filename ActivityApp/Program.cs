@@ -1,4 +1,9 @@
-﻿namespace ActivityApp
+﻿using ActivityApp.App.Abstract;
+using ActivityApp.App.Concrete;
+using ActivityApp.App.Managers;
+using ActivityApp.Domain.Entity;
+
+namespace ActivityApp
 {
     public class Program
     {
@@ -47,9 +52,11 @@
 
             Console.WriteLine("Witam w  Activty App!");
             MenuActionService actionService = new MenuActionService();
-            actionService = Initialize(actionService);
-            ActivityService activityService = new ActivityService();
-            activityService.InitializeTestingData();
+            ActivityManager activityManager = new ActivityManager(actionService );  
+                
+            
+            
+         
             while (true)
             {
 
@@ -65,22 +72,17 @@
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        var keyInfo = activityService.AddNewActivityView(actionService);
-                        var id = activityService.AddActivityItem(keyInfo.KeyChar);
+                        var newId = activityManager.AddNewActivity();
                         break;
                     case '2':
-                        var removeId = activityService.RemoveActivityView();
-                        activityService.RemoveActivity(removeId);
+                        var removeId = activityManager.RemoveActivity();
                         break;
                     case '3':
-                        var detailId = activityService.ActivityDetailSelectionView();
-                        activityService.ActivityDetailView(detailId);
+                        var detailId = activityManager.ActivityDetailView();
                         break;
                     case '4':
-                        var typeId = activityService.ActivityTypeSelectionView();
-                        activityService.ActivityByTypeIdView(typeId);
+                        var typeId = activityManager.ActivityByTypeIdView();
                         break;
-
                     default:
                         Console.WriteLine("Polecenie, które wybrałeś nie istnieje.");
                         break;
@@ -92,18 +94,6 @@
 
         }
 
-        private static MenuActionService Initialize(MenuActionService actionService)
-        {
-            actionService.AddNewAction(1, "Dodaj aktywność", "Main");
-            actionService.AddNewAction(2, "Usuń aktwyność", "Main");
-            actionService.AddNewAction(3, "Pokaż detale aktywności", "Main");
-            actionService.AddNewAction(4, "Lista aktywności", "Main");
 
-            actionService.AddNewAction(1, "Pływanie", "AddNewItemMenu");
-            actionService.AddNewAction(2, "Bieganie", "AddNewItemMenu");
-            actionService.AddNewAction(3, "Ćwiczenia", "AddNewItemMenu");
-
-            return actionService;
-        }
     }
 }

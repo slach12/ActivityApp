@@ -9,6 +9,15 @@ namespace ActivityApp.Domain.Entity
 {
     public class Activity : BaseEntity
     {
+        public Activity() { }   
+
+        public Activity(int id, string name , ActivityTypes typeId) 
+        { 
+            Name = name;
+            TypeId = typeId;
+            Id = id;  
+        
+        }
         public string Name { get; set; }
         public ActivityTypes TypeId {  get; set; }
 

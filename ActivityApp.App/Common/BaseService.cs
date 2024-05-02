@@ -42,5 +42,21 @@ namespace ActivityApp.App.Common
 
             return entity.Id;
         }
+
+        public int GetLastId()
+        {
+            int lastId;
+            if (Items.Any())
+            {
+                lastId = Items.OrderBy(p => p.Id).LastOrDefault().Id;
+            } 
+            else
+            {
+                lastId = 0;
+            }
+            return lastId;
+
+        }
+
     }
 }
